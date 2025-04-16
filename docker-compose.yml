@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  cassandra:
+    image: cassandra:4.1
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    volumes:
+      - ./cassandra-data:/var/lib/cassandra
+    environment:
+      CASSANDRA_CLUSTER_NAME: "CassandraCluster"
+      CASSANDRA_DC: DC1
+
+  airflow-web:
+    image: apache/airflow:2.8.1
+    container_name: airflow-web
+    ports:
+      - "8082:8080"
+    command: bash -c "airflow standalone"
+    volumes:
+      - ./airflow:/opt/airflow
+      - ./app:/opt/airflow/app
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////opt/airflow/airflow.db
+      - _AIRFLOW_WWW_USER_USERNAME=admin
+      - _AIRFLOW_WWW_USER_PASSWORD=admin
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./provisioning/dashboards:/etc/grafana/provisioning/dashboards
+    environment:
+      - GF_INSTALL_PLUGINS=marcusolsson-json-datasource
+
+  api-flask:
+    build:
+      context: ./app
+    container_name: api-ibov
+    ports:
+      - "5000:5000"
+    depends_on:
+      - cassandra
+    volumes:
+      - ./app:/app
+
+volumes:
+  grafana-storage:

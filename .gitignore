@@ -1,0 +1,62 @@
+# Byte-compiled / temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual env
+.venv/
+env/
+venv/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+*.env
+
+# Airflow
+airflow.db
+airflow-webserver.pid
+airflow.cfg
+unittests.cfg
+logs/
+__pycache__/
+.egg-info/
+
+# Cassandra
+*.cql
+*.db
+*.db-journal
+
+# VSCode
+.vscode/
+
+# Docker
+*.pid
+*.tar
+*.bak
+.dockerignore
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Jupyter
+.ipynb_checkpoints
+
+# OS-generated
+.idea/
+*.swp
+*.swo
+
+# Grafana provisioning cache
+provisioning/dashboards/*.bak
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
