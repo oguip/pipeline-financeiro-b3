@@ -159,8 +159,9 @@ project-root/
 
 ## 🎥 Demonstração
 
-- 📽️ **Vídeo do Projeto**: 
+- 📽️ **Vídeo do Projeto**: https://youtu.be/LygbeV-aq-k
 - 🖼️ **Screenshot do Dashboard**: ![Dashboard Grafana](https://i.imgur.com/xdc5A7U.png)
+- 🖼️ **Datasource**: ![Datasource](https://i.imgur.com/8HKm6Wu.png)
 
 ---
 
